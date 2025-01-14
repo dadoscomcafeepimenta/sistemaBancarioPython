@@ -1,4 +1,5 @@
 from datetime import datetime
+import textwrap
 
 def menu():
     menu = """
@@ -6,18 +7,18 @@ def menu():
                  Escolha uma opção:
     ============================================
 
-    [d] Depositar
-    [s] Sacar
-    [e] Extrato
-    [nc] Nova conta
-    [lc] Listar contas
-    [nu] Novo usuário
-    [q] Sair
+    [d]\tDepositar
+    [s]\tSacar
+    [e]\tExtrato
+    [nc]\tNova conta
+    [lc]\tListar contas
+    [nu]\tNovo usuário
+    [q]\tSair
 
     ============================================
     => """
 
-    return input(menu)
+    return input(textwrap.dedent(menu))
 
 def depositar(saldo, valor, extrato, quantidade_transacoes, /):
     if valor > 0:
@@ -30,7 +31,6 @@ def depositar(saldo, valor, extrato, quantidade_transacoes, /):
     quantidade_transacoes += 1
 
     return saldo, extrato, quantidade_transacoes
-
 
 def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques, quantidade_transacoes):
     if numero_saques >= limite_saques:
@@ -68,7 +68,7 @@ def criar_usuario(usuarios):
     usuario = filtrar_usuario(cpf, usuarios)
 
     if usuario:
-        print("\n@@@ Já existe usuário com esse CPF! @@@")
+        print("\nJá existe usuário com esse CPF!")
         return
 
     nome = input("Informe o nome completo: ")
@@ -104,7 +104,7 @@ def listar_contas(contas):
                 Titular:\t{conta['usuario']['nome']}
             """
         print("=" * 100)
-        print(linha)
+        print(textwrap.dedent(linha))
 
 def main():
     AGENCIA = "0001"
