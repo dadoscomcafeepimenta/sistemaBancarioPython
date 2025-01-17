@@ -7,6 +7,9 @@ class Cliente:
 		self.endereco = endereco
 		self.contas = []
 
+	def realizar_transacao(self, conta, transacao):
+		transacao.registrar(conta)
+
 	def adicionar_conta(self, conta):
 		self.contas.append(conta)
 
@@ -86,7 +89,7 @@ class ContaCorrente(Conta):
 		)
 
 		excedeu_limite = valor > self.limite
-		excedeu_saques = numero_saques > self.limite_saques
+		excedeu_saques = numero_saques >= self.limite_saques
 
 		if excedeu_limite:
 			print(f"Valor máximo por saque excedido! Valor máximo permitido: R${self.limite:.2f}")
